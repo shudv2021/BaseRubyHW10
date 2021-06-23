@@ -22,10 +22,12 @@ module Accessors
 
   module InstanceMethods
     def strong_attr_accessor(atr_name, atr_class)
-      if atr_name.class == atr_class
-        atribute_name = "@#{atr_name}".to_sym
-        define_method(atr_name) {instance_variable_get(atribute_name)}
-        define_method("#{atr_name}=".to_sym) { |value| instance_variable_set(atr_name, value)}
+      #Не совсем понял что ч чем долдно сравниваться что приходит в atr_name и в atr_class? Хотябы один пример
+      # atr_name  = 1  atr_class = Integer ????????????????
+      if ***** == *****
+        self.class.attr_cassesor_with_history
+        else
+        raise "Class object isn't right"
       end
     end
   end
