@@ -1,10 +1,14 @@
 require_relative 'modules'
 require_relative 'counter'
 require_relative 'rail_way'
+require_relative 'accessors'
+require_relative 'validation'
 
 class Train
   include Producer
   include Counter
+  include Accessors
+  include Validation
   @@train_all = []
   @@instances = 0
   def self.find(train_num, _cagro = 10)
@@ -17,6 +21,9 @@ class Train
   TRAIN_NUMBER_FORMAT = /[0-9]{3}-[а-я]{2}$/i.freeze
 
   attr_reader :train_num, :route, :current_station, :speed, :type, :total_carriages
+
+  validate(:train_num, :presence)
+  validate(:train_num, :format, TRAIN_NUMBER_FORMAT)
 
   def initialize(train_num)
     @train_num = train_num
@@ -102,7 +109,7 @@ class Train
     (@train_num =~ TRAIN_NUMBER_FORMAT).zero?
   end
 
-  def validate!
-    raise ' Неверный формат имение поезда. ' unless valide_format!
+  #   def validate!
+  #  raise ' Неверный формат имение поезда. ' unless valide_format!
+  #end
   end
-end
