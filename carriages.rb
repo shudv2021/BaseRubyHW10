@@ -10,7 +10,6 @@ class Carriage
 
   def initialize(carr_num, _cargo = 10)
     @carr_num = carr_num
-    validate!
     increase_counter
   end
 

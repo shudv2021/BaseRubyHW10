@@ -1,3 +1,5 @@
+require 'byebug'
+require 'pry'
 require_relative 'rail_way'
 require_relative 'train'
 require_relative 'pasanger_train'

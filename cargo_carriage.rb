@@ -1,12 +1,19 @@
 require_relative 'carriages'
+require_relative 'validation'
 class CargoCarriage < Carriage
+  include Validation
   attr_reader :type, :availiable_place, :use_place
+
+  validate(:carr_num, :presence)
+  validate(:carr_num, :format, CARRIAGE_NAMBER_FORMAT)
 
   def initialize(carr_num, cargo = 10)
     super
+    @carr_num = carr_num
     @type = :cargo
     @availiable_goods = cargo
     @use_place = 0.0
+    validate!
   end
 
   def add_good(goods)
